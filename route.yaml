@@ -1,0 +1,29 @@
+apiVersion: v1
+items:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app: coolstore
+      app.kubernetes.io/instance: gateway
+      app.kubernetes.io/name: gateway
+      app.kubernetes.io/part-of: coolstore
+      app.openshift.io/runtime: dotnet
+      component: gateway
+    name: gateway-coolstore
+  spec:
+    port:
+      targetPort: http
+    to:
+      kind: Service
+      name: gateway-coolstore
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+kind: List
+metadata:
+  resourceVersion: ""
